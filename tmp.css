@@ -1185,3 +1185,12 @@ p {
   border-radius: 15px;
   padding: 10px 15px;
 }
+
+#kittenContainer {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+/* When the container has the "flipped" class, rotate it 180 degrees */
+#kittenContainer.flipped {
+  transform: rotateY(180deg);
+}

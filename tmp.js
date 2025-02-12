@@ -52,3 +52,42 @@ function animateValue(id, start, end, duration) {
   }
   window.requestAnimationFrame(step);
 }
+
+// Define your kitten examples
+const kittenExamples = [
+  {
+    image: "img/kitten1.jpeg",
+    caption: "This is enough time for a kitten to grow into a grown cat!",
+  },
+  {
+    image: "img/kitten2.jpg",
+    caption: "A kitten could learn to pounce in this journey!",
+  },
+  {
+    image: "img/kitten3.jpg",
+    caption: "Plenty of days for a kitten to chase its tail!",
+  },
+  {
+    image: "img/kitten4.jpg",
+    caption: "Enough time for a kitten to nap in the sun!",
+  },
+  {
+    image: "img/kitten5.jpg",
+    caption: "This is sufficient for a kitten to become a wise grown cat!",
+  },
+];
+let currentKittenIndex = 0;
+
+function flipKitten(event) {
+  event.stopPropagation(); // Prevents the click from reaching the parent
+  const container = document.getElementById("kittenContainer");
+  container.classList.add("flipped");
+  setTimeout(() => {
+    currentKittenIndex = (currentKittenIndex + 1) % kittenExamples.length;
+    document.getElementById("kittenImage").src =
+      kittenExamples[currentKittenIndex].image;
+    document.getElementById("kittenCaption").textContent =
+      kittenExamples[currentKittenIndex].caption;
+    container.classList.remove("flipped");
+  }, 600);
+}
