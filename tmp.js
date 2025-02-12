@@ -13,12 +13,21 @@ function movePage(e, page) {
     currentPage += 2;
     toggleClass(e, "left-side");
     toggleClass(e.nextElementSibling, "left-side");
-  } else if ((page = currentPage - 1)) {
+  } else if (page == currentPage - 1) {
     currentPage -= 2;
     toggleClass(e, "left-side");
     toggleClass(e.previousElementSibling, "left-side");
   }
+  if (currentPage === 3) {
+    animateValue("daysTogether", 0, calculateDaysTogether(), 2000);
+  } else if (currentPage === 5) {
+    animateValue("nicknameCount", 0, 99, 2000);
+    animateValue("restaurantsCount", 0, 99, 2000);
+  }
+
+  //   console.log(currentPage);
 }
+
 // Set your anniversary date (adjust as needed)
 const anniversaryDate = new Date("2023-10-02");
 
@@ -43,9 +52,3 @@ function animateValue(id, start, end, duration) {
   }
   window.requestAnimationFrame(step);
 }
-
-// Once the DOM is fully loaded, update the stat
-document.addEventListener("DOMContentLoaded", () => {
-  const daysTogether = calculateDaysTogether();
-  animateValue("daysTogether", 0, daysTogether, 2000);
-});

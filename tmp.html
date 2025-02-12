@@ -3,6 +3,7 @@
 
 <div class="instruction">Flip the page</div>
 <div class="book">
+  <!-- Page 1: Front Cover -->
   <div class="page cover-front" onclick="movePage(this, 1)">
     <h1>Happy Valentine's Day!</h1>
     <h2>Our Love Story</h2>
@@ -10,182 +11,88 @@
     <div class="hat"><i class="fab fa-pied-piper-hat"></i></div>
     <h2>Your MooToo</h2>
   </div>
+  <!-- Page 2: Decorative Inner Front Cover -->
   <div class="page cover-front" onclick="movePage(this, 2)"></div>
+  <!-- Page 3: Our Journey Begins with Days Together and Kitten-themed examples -->
   <div class="page text-page" onclick="movePage(this, 3)">
     <h1>Our Journey Begins</h1>
     <div class="stat">
       <p><span>Days Together:</span> <span id="daysTogether">0</span></p>
     </div>
+    <h2>How Long Is This In Kitten Terms?!</h2>
+    <ul>
+      <li>
+        <img
+          src="https://via.placeholder.com/150?text=Kitten+1"
+          alt="Kitten Example 1"
+        />
+        <p>This is enough time for a kitten to grow into a grown cat!</p>
+      </li>
+      <li>
+        <img
+          src="https://via.placeholder.com/150?text=Kitten+2"
+          alt="Kitten Example 2"
+        />
+        <p>A kitten could learn to pounce in this journey!</p>
+      </li>
+      <li>
+        <img
+          src="https://via.placeholder.com/150?text=Kitten+3"
+          alt="Kitten Example 3"
+        />
+        <p>Plenty of days for a kitten to chase its tail!</p>
+      </li>
+      <li>
+        <img
+          src="https://via.placeholder.com/150?text=Kitten+4"
+          alt="Kitten Example 4"
+        />
+        <p>Enough time for a kitten to nap in the sun!</p>
+      </li>
+      <li>
+        <img
+          src="https://via.placeholder.com/150?text=Kitten+5"
+          alt="Kitten Example 5"
+        />
+        <p>This is sufficient for a kitten to become a wise grown cat!</p>
+      </li>
+    </ul>
   </div>
+  <!-- Page 4: Nicknames -->
   <div class="page text-page" onclick="movePage(this, 4)">
-    <p>
-      vanished--how strange it was!--a few sayings like this about cabbages.
-    </p>
-    <p>
-      She stiffened a little on the kerb, waiting for Durtnall's van to pass. A
-      charming woman, Scrope Purvis thought her (knowing her as one does know
-      people who live next door to one in Westminster); a touch of the bird
-      about her, of the jay, blue-green, light, vivacious, though she was over
-      fifty, and grown very white since her illness. There she perched, never
-      seeing him, waiting to cross, very upright.
-    </p>
-    <p>
-      For having lived in Westminster--how many years now? over twenty,--one
-      feels even in the midst of the traffic, or waking at night, Clarissa was
-      positive, a particular hush, or solemnity; an indescribable pause; a
-      suspense (but that might be her heart, affected, they said, by influenza)
-      before Big Ben strikes. There! Out it boomed. First a warning, musical;
-      then the hour, irrevocable. The leaden circles dissolved in the air. Such
-      fools we are, she thought, crossing Victoria Street. For Heaven only knows
-      why one loves it so, how one sees it so, making it up, building it round
-      one, tumbling it, creating it every moment afresh; but the veriest frumps,
-      the most dejected of miseries sitting on doorsteps (drink their downfall)
-      do the same; can't be dealt with, she felt positive, by Acts of Parliament
-      for that very reason: they love life. In people's eyes, in the swing,
-      tramp, and trudge; in the bellow and
-    </p>
+    <h1>Our Adorable Nicknames</h1>
+    <p>We have <strong id="nicknameCount">0</strong> special nicknames:</p>
+    <ul>
+      <li>Sweetie Pie</li>
+      <li>Honeybun</li>
+      <li>Cutie Patootie</li>
+      <li>Sunshine</li>
+      <li>Boo Bear</li>
+    </ul>
   </div>
+  <!-- Page 5: Restaurants Discovered -->
   <div class="page text-page" onclick="movePage(this, 5)">
+    <h1>Restaurant Discoveries</h1>
     <p>
-      the uproar; the carriages, motor cars, omnibuses, vans, sandwich men
-      shuffling and swinging; brass bands; barrel organs; in the triumph and the
-      jingle and the strange high singing of some aeroplane overhead was what
-      she loved; life; London; this moment of June.
+      We've discovered <strong id="restaurantsCount">0</strong> delightful
+      spots:
     </p>
-    <p>
-      For it was the middle of June. The War was over, except for some one like
-      Mrs. Foxcroft at the Embassy last night eating her heart out because that
-      nice boy was killed and now the old Manor House must go to a cousin; or
-      Lady Bexborough who opened a bazaar, they said, with the telegram in her
-      hand, John, her favourite, killed; but it was over; thank Heaven--over. It
-      was June. The King and Queen were at the Palace. And everywhere, though it
-      was still so early, there was a beating, a stirring of galloping ponies,
-      tapping of cricket bats; Lords, Ascot, Ranelagh and all the rest of it;
-      wrapped in the soft mesh of the grey-blue morning air, which, as the day
-      wore on, would unwind them, and set down on their lawns and pitches the
-      bouncing ponies, whose forefeet just struck the ground and up they sprung,
-      the whirling young men, and laughing girls in their transparent muslins
-      who, even now, after dancing all night, were taking their absurd woolly
-      dogs for a run; and even now, at this hour, discreet old dowagers were
-      shooting out in their motor cars on errands of mystery; and the
-      shopkeepers were fidgeting in their windows with their paste and diamonds,
-      their lovely old sea-green brooches in
-    </p>
+    <ul>
+      <li>Joe's Diner</li>
+      <li>The Cozy Corner</li>
+      <li>Bistro Love</li>
+    </ul>
   </div>
+  <!-- Page 6: Thank You Message -->
   <div class="page text-page" onclick="movePage(this, 6)">
+    <h1>Thank You!</h1>
     <p>
-      eighteenth-century settings to tempt Americans (but one must economise,
-      not buy things rashly for Elizabeth), and she, too, loving it as she did
-      with an absurd and faithful passion, being part of it, since her people
-      were courtiers once in the time of the Georges, she, too, was going that
-      very night to kindle and illuminate; to give her party. But how strange,
-      on entering the Park, the silence; the mist; the hum; the slow-swimming
-      happy ducks; the pouched birds waddling; and who should be coming along
-      with his back against the Government buildings, most appropriately,
-      carrying a despatch box stamped with the Royal Arms, who but Hugh
-      Whitbread; her old friend Hugh--the admirable Hugh!
-    </p>
-    <p>
-      "Good-morning to you, Clarissa!" said Hugh, rather extravagantly, for they
-      had known each other as children. "Where are you off to?"
-    </p>
-    <p>
-      "I love walking in London," said Mrs. Dalloway. "Really it's better than
-      walking in the country."
+      Thank you for being such a great, supportive girlfriend. I cherish every
+      moment with you!
     </p>
   </div>
+  <!-- Additional pages remain unchanged -->
   <div class="page"></div>
   <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
-  <div class="page"></div>
+  <!-- ... etc ... -->
 </div>
