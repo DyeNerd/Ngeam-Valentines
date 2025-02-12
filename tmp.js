@@ -19,9 +19,33 @@ function movePage(e, page) {
     toggleClass(e.previousElementSibling, "left-side");
   }
 }
+// Set your anniversary date (adjust as needed)
+const anniversaryDate = new Date("2023-10-02");
 
-function updateStats() {
-  animateValue("daysTogether", 0, calculateDaysTogether(), 2000);
-  animateValue("numNicknames", 0, nicknames.length, 2000);
-  animateValue("numRestaurants", 0, restaurants.length, 2000);
+// Calculate the number of days together
+function calculateDaysTogether() {
+  const now = new Date();
+  const diffTime = now - anniversaryDate; // difference in milliseconds
+  return Math.floor(diffTime / (1000 * 60 * 60 * 24)); // convert ms to days
 }
+
+// Animate a numeric value from start to end over the given duration (in ms)
+function animateValue(id, start, end, duration) {
+  const obj = document.getElementById(id);
+  let startTimestamp = null;
+  function step(timestamp) {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.textContent = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  }
+  window.requestAnimationFrame(step);
+}
+
+// Once the DOM is fully loaded, update the stat
+document.addEventListener("DOMContentLoaded", () => {
+  const daysTogether = calculateDaysTogether();
+  animateValue("daysTogether", 0, daysTogether, 2000);
+});
