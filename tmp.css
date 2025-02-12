@@ -19,19 +19,19 @@ body {
   height: 100vh;
   min-width: 900px;
   min-height: 700px;
-  background: #ffe6f0; /* light blush */
+  background: #ffe6f0; /* light blush for Valentine’s */
   position: relative;
 }
 
 .book {
   width: 847px;
   height: 654.5px;
-  /* Use the same transforms as before */
   transform: translate(-50%, -50%) rotateX(10deg) rotateY(-10deg);
   transform-style: preserve-3d;
 }
 
-/* Pages keep the same layout, but we update colors for a Valentine’s feel */
+/* Remove the translateZ() values so that all pages lie in the same plane,
+   and use z-index to layer them in order. */
 .page {
   width: 423.5px;
   height: 654.5px;
@@ -42,90 +42,80 @@ body {
   background: #fff0f5;
   border: 1px solid #ffccd5;
   color: #a3004d;
-  /* Set a default z-index and initial transform */
-  z-index: 0;
-  transform: translateZ(-1px);
+  transform: translateZ(0); /* all pages at same depth */
 }
 
-/* Ensure the first page is visible on load */
+/* Layer pages using z-index so that page 1 is on top, then 2, etc. */
 .page:nth-child(1) {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
-  transform: translateZ(0); /* first page visible */
   background: linear-gradient(135deg, #ffccd5, #ffb3c6);
   color: #a3004d;
-  z-index: 1;
+  z-index: 6;
 }
 .left-side:nth-child(1) {
-  transform: translateZ(1px) rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
-/* Paired inner front cover (page 2) */
 .page:nth-child(2) {
   padding: 5% 5% 4% 4%;
   transform-origin: 100% 50%;
-  transform: translateZ(-2px) scaleX(-1) translateX(100%);
+  transform: scaleX(-1) translateX(100%);
   background: linear-gradient(135deg, #ffccd5, #ffb3c6);
   color: #a3004d;
-  z-index: 0;
+  z-index: 5;
 }
 .left-side:nth-child(2) {
-  transform: translateZ(2px) scaleX(-1) translateX(100%) rotateY(180deg);
+  transform: scaleX(-1) translateX(100%) rotateY(180deg);
 }
 
-/* Page 3: "Our Journey Begins" with stats and kitten examples */
 .page:nth-child(3) {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
-  transform: translateZ(-3px);
   background: #fff0f5;
   color: #a3004d;
-  z-index: 0;
+  z-index: 4;
 }
 .left-side:nth-child(3) {
-  transform: translateZ(3px) rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
-/* Page 4: Nicknames */
 .page:nth-child(4) {
   padding: 5% 5% 4% 4%;
   transform-origin: 100% 50%;
-  transform: translateZ(-4px) scaleX(-1) translateX(100%);
+  transform: scaleX(-1) translateX(100%);
   background: #fff0f5;
   color: #a3004d;
-  z-index: 0;
+  z-index: 3;
 }
 .left-side:nth-child(4) {
-  transform: translateZ(4px) scaleX(-1) translateX(100%) rotateY(180deg);
+  transform: scaleX(-1) translateX(100%) rotateY(180deg);
 }
 
-/* Page 5: Restaurants */
 .page:nth-child(5) {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
-  transform: translateZ(-5px);
   background: #fff0f5;
   color: #a3004d;
-  z-index: 0;
+  z-index: 2;
 }
 .left-side:nth-child(5) {
-  transform: translateZ(5px) rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
-/* Page 6: Thank You Message */
 .page:nth-child(6) {
   padding: 5% 5% 4% 4%;
   transform-origin: 100% 50%;
-  transform: translateZ(-6px) scaleX(-1) translateX(100%);
+  transform: scaleX(-1) translateX(100%);
   background: #fff0f5;
   color: #a3004d;
-  z-index: 0;
+  z-index: 1;
 }
 .left-side:nth-child(6) {
-  transform: translateZ(6px) scaleX(-1) translateX(100%) rotateY(180deg);
+  transform: scaleX(-1) translateX(100%) rotateY(180deg);
 }
 
-/* Cover-front styling (applied to pages with class cover-front) */
+/* Cover-front specific styling */
 .cover-front:nth-child(1) {
   text-align: center;
   background: linear-gradient(#ffd6e0, #ffc1cc) 50% 50%/80% 86% no-repeat,
