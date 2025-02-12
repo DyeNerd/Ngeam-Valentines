@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Our Love Story</title>
+    <!-- Using two elegant fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora&family=EB+Garamond&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* Global Reset & Background */
+      /* Global Reset & Base Styles */
       * {
         margin: 0;
         padding: 0;
@@ -14,113 +19,93 @@
       html,
       body {
         width: 100%;
-        height: 100%;
-        font-family: Arial, sans-serif;
-        /* Website background (will show through on cover gaps) */
-        background: linear-gradient(135deg, #f8bbd0, #f06292);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      /* Book container – note: no background so covers show website bg where missing */
-      #book-container {
-        perspective: 2000px;
+        height: 100vh;
+        background: #ffe6f0; /* soft, warm pink background */
+        font-family: "EB Garamond", serif;
         position: relative;
+      }
+      /* Instruction Message */
+      .instruction {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 26px;
+        font-family: "Lora", serif;
+        color: rgba(0, 0, 0, 0.7);
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
+        padding: 10px 15px;
+        z-index: 10;
+      }
+      /* Book Container – centered with a slight 3D rotation */
+      .book {
+        position: absolute;
+        top: 50%;
+        left: 50%;
         width: 800px;
         height: 600px;
+        transform: translate(-50%, -50%) rotateX(10deg) rotateY(-10deg);
+        transform-style: preserve-3d;
       }
-      /* The book itself is transparent so that the covers can “cut out” parts */
-      #book {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        /* For inner spreads, the pages provide the white background */
-        background: transparent;
-        overflow: hidden;
-      }
-      /* The spine is normally drawn – but will be hidden when a cover is active */
-      #book::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 6px;
-        height: 100%;
-        background: #aaa;
-        transform: translateX(-50%);
-        z-index: 2;
-        transition: opacity 0.3s;
-      }
-      /* Hide spine when cover is active */
-      #book.cover-active::before {
-        opacity: 0;
-      }
-      /* Each spread covers the full book; only the active spread is displayed */
-      .spread {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: none;
-      }
-      .spread.active {
-        display: block;
-      }
-      /* In an inner spread both pages are present – each page occupies 50% */
+      /* Each page is half the book’s width */
       .page {
         position: absolute;
-        width: 50%;
-        height: 100%;
+        width: 400px;
+        height: 600px;
         overflow: hidden;
+        transition: transform 1s;
+        backface-visibility: hidden;
       }
-      .page.left {
+      /* Odd-numbered pages (right sides) */
+      .page:nth-child(odd) {
+        left: 400px;
+        transform-origin: left center;
+      }
+      /* Even-numbered pages (left sides, mirrored) */
+      .page:nth-child(even) {
         left: 0;
+        transform: scaleX(-1);
+        transform-origin: right center;
       }
-      .page.right {
-        right: 0;
+      /* When a page is flipped, we add the "left-side" class */
+      .left-side {
+        transform: rotateY(-180deg) !important;
       }
-      /* COVER SPREADS (front & back) have only one page; the other side is absent so background shows */
-      .spread.cover.front .page.right,
-      .spread.cover.back .page.left {
-        width: 50%; /* these pages appear on one side only */
+      /* COVER STYLE – for front covers (pages 1–2) */
+      .cover-front {
+        font-family: "Lora", serif;
+        text-align: center;
+        padding: 20px;
+        /* A romantic gradient for the cover */
+        background: linear-gradient(135deg, #ffccd5, #ffb3c6);
+        color: #a3004d;
       }
-      /* Cover pages get a distinct gradient */
-      .cover .page .content {
-        background: linear-gradient(135deg, #ff80ab, #e91e63);
-        color: #fff;
-        width: 100%;
-        height: 100%;
-      }
-      /* Inner pages – content on a white background */
-      .inner .page .content {
+      /* TEXT PAGE STYLE – inner pages */
+      .text-page {
+        font-family: "EB Garamond", serif;
+        text-align: center;
+        padding: 20px;
         background: #fff;
         color: #333;
-        width: 100%;
-        height: 100%;
       }
-      /* Content styling for all pages */
-      .content {
-        padding: 20px;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-      }
-      .content h1 {
-        font-size: 2.5em;
+      /* Headings & Paragraphs */
+      h1 {
+        font-size: 40px;
         margin-bottom: 10px;
       }
-      .content p {
-        font-size: 1.2em;
+      h2 {
+        font-size: 32px;
         margin-bottom: 10px;
       }
-      .instruction {
-        font-size: 1em;
-        margin-top: 20px;
+      p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 15px;
       }
+      /* Heart Icon Animation */
       .heart {
-        color: #ff1744;
+        color: #e60073;
         animation: beat 1s infinite;
       }
       @keyframes beat {
@@ -132,264 +117,74 @@
           transform: scale(1.2);
         }
       }
-      /* The flipper element – used to animate a realistic page turn */
-      .flip-page {
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        top: 0;
-        /* For forward (right-page) flip, origin is the left edge */
-        transform-origin: left center;
-        transform: rotateY(0deg);
-        transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 100;
-        will-change: transform;
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
-        /* Add a shadow to simulate the page covering another */
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-      }
-      /* For backward flips, adjust origin and shadow */
-      .flip-page.left-flip {
-        transform-origin: right center;
-        left: auto;
-        right: 0;
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
-      }
-      /* The two faces of the flipper */
-      .flip-page .face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        backface-visibility: hidden;
-        overflow: hidden;
-      }
-      /* The back face is rotated so its content appears normally */
-      .flip-page .back {
-        transform: rotateY(180deg);
-      }
     </style>
   </head>
   <body>
-    <div id="book-container">
-      <div id="book">
-        <!-- Spread 0: Front Cover (front cover – only right page exists; mark as cover & front) -->
-        <div class="spread cover front active" id="spread-0">
-          <!-- (No left page is present, so the left half is transparent and shows the website bg) -->
-          <div class="page right" id="spread0-right">
-            <div class="content">
-              <h1>Happy Valentine's Day! <span class="heart">❤</span></h1>
-              <p>Click here to open the book</p>
-              <p class="instruction">(Next →)</p>
-            </div>
-          </div>
-        </div>
-        <!-- Spread 1: Inner Spread (both left and right pages) -->
-        <div class="spread inner" id="spread-1">
-          <div class="page left" id="spread1-left">
-            <div class="content">
-              <h1>Our First Meeting</h1>
-              <p>I still remember the moment we met...</p>
-              <p class="instruction">(← Previous)</p>
-            </div>
-          </div>
-          <div class="page right" id="spread1-right">
-            <div class="content">
-              <h1>Our Journey Begins</h1>
-              <div class="stat">
-                <p>
-                  <span>Days Together:</span> <span id="daysTogether">0</span>
-                </p>
-              </div>
-              <div class="stat">
-                <p><span>Nicknames:</span> <span id="numNicknames">0</span></p>
-              </div>
-              <div class="stat">
-                <p>
-                  <span>Restaurants Explored:</span>
-                  <span id="numRestaurants">0</span>
-                </p>
-              </div>
-              <p class="instruction">(Next →)</p>
-            </div>
-          </div>
-        </div>
-        <!-- Spread 2: Back Cover (back cover – only left page exists; mark as cover & back) -->
-        <div class="spread cover back" id="spread-2">
-          <div class="page left" id="spread2-left">
-            <div class="content">
-              <h1>Always & Forever</h1>
-              <p>Thank you for filling my life with love.</p>
-              <p class="instruction">(← Previous)</p>
-            </div>
-          </div>
-          <!-- No right page is present -->
-        </div>
+    <div class="instruction">Flip the page to reveal our love story</div>
+    <div class="book">
+      <!-- Page 1: Front Cover (only right page is visible) -->
+      <div class="page cover-front" onclick="movePage(this, 1)">
+        <h1>Happy Valentine's Day!</h1>
+        <h2>Our Love Story</h2>
+        <p>With all my heart, I love you.</p>
+      </div>
+      <!-- Page 2: Inner Front Cover (left side; decorative, left blank) -->
+      <div class="page cover-front" onclick="movePage(this, 2)"></div>
+      <!-- Page 3: Inner Spread, Right Page -->
+      <div class="page text-page" onclick="movePage(this, 3)">
+        <h2>Chapter 1: The Spark</h2>
+        <p>The moment our eyes met, I knew my life would change forever.</p>
+      </div>
+      <!-- Page 4: Inner Spread, Left Page (mirror of page 3) -->
+      <div class="page text-page" onclick="movePage(this, 4)">
+        <h2>Chapter 1: The Spark</h2>
+        <p>Every smile and gentle touch lit a fire in my heart.</p>
+      </div>
+      <!-- Page 5: Inner Spread, Right Page -->
+      <div class="page text-page" onclick="movePage(this, 5)">
+        <h2>Chapter 2: Memories</h2>
+        <p>Every moment shared with you is a cherished page of our story.</p>
+      </div>
+      <!-- Page 6: Inner Spread, Left Page (mirror of page 5) -->
+      <div class="page text-page" onclick="movePage(this, 6)">
+        <h2>Chapter 2: Memories</h2>
+        <p>Our laughter, our dreams, and our secrets fill my heart with joy.</p>
+      </div>
+      <!-- Page 7: Inner Back Cover (right side; optional decorative page) -->
+      <div class="page text-page" onclick="movePage(this, 7)"></div>
+      <!-- Page 8: Back Cover (only left page is visible) -->
+      <div class="page text-page" onclick="movePage(this, 8)">
+        <h1>Forever &amp; Always</h1>
+        <p>My heart is yours, today and forever.</p>
       </div>
     </div>
 
     <script>
-      // Relationship details – customize as desired.
-      const anniversaryDate = new Date("2022-02-14");
-      const nicknames = ["Lovebug", "Sweetie", "Darling"];
-      const restaurants = [
-        "Joe's Grill",
-        "The Fancy Fork",
-        "Burger Blast",
-        "Spice Symphony",
-      ];
+      let currentPage = 1;
 
-      // Calculate days together.
-      function calculateDaysTogether() {
-        const now = new Date();
-        return Math.floor((now - anniversaryDate) / (1000 * 60 * 60 * 24));
-      }
-      // Simple numeric animation.
-      function animateValue(id, start, end, duration) {
-        const obj = document.getElementById(id);
-        let startTimestamp = null;
-        const step = (timestamp) => {
-          if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          obj.textContent = Math.floor(progress * (end - start) + start);
-          if (progress < 1) window.requestAnimationFrame(step);
-        };
-        window.requestAnimationFrame(step);
-      }
-      function updateStats() {
-        animateValue("daysTogether", 0, calculateDaysTogether(), 2000);
-        animateValue("numNicknames", 0, nicknames.length, 2000);
-        animateValue("numRestaurants", 0, restaurants.length, 2000);
-      }
-
-      const spreads = document.querySelectorAll(".spread");
-      let currentSpread = 0;
-      const bookEl = document.getElementById("book");
-      function showSpread(index) {
-        spreads.forEach((spread, i) => {
-          spread.classList.toggle("active", i === index);
-        });
-        // For inner spread (index 1), update stats.
-        if (index === 1) updateStats();
-        currentSpread = index;
-        // If on a cover (front or back), hide the spine.
-        if (index === 0 || index === spreads.length - 1) {
-          bookEl.classList.add("cover-active");
+      function toggleClass(e, toggleClassName) {
+        if (e.className.includes(toggleClassName)) {
+          e.className = e.className.replace(" " + toggleClassName, "");
         } else {
-          bookEl.classList.remove("cover-active");
+          e.className += " " + toggleClassName;
         }
       }
 
-      // For forward flip (clicking on a right page), we want the backside to show the NEXT spread’s left page.
-      function createForwardFlipper() {
-        const currentSpreadElem = spreads[currentSpread];
-        const nextSpreadElem = spreads[currentSpread + 1];
-        const currentPage = currentSpreadElem.querySelector(".page.right");
-        const nextPage = nextSpreadElem.querySelector(".page.left");
-        if (!currentPage || !nextPage) {
-          showSpread(currentSpread + 1);
-          return;
-        }
-        const book = document.getElementById("book");
-        const flipper = document.createElement("div");
-        flipper.className = "flip-page";
-        // Position over the current right page.
-        const offsetLeft = currentPage.offsetLeft;
-        const offsetTop = currentPage.offsetTop;
-        flipper.style.top = offsetTop + "px";
-        flipper.style.left = offsetLeft + "px";
-        flipper.style.width = currentPage.offsetWidth + "px";
-        flipper.style.height = currentPage.offsetHeight + "px";
-        // Build the two faces.
-        const frontFace = document.createElement("div");
-        frontFace.className = "face front";
-        frontFace.innerHTML = currentPage.innerHTML;
-        const backFace = document.createElement("div");
-        backFace.className = "face back";
-        backFace.innerHTML = nextPage.innerHTML;
-        flipper.appendChild(frontFace);
-        flipper.appendChild(backFace);
-        book.appendChild(flipper);
-        // Hide underlying pages during flip.
-        currentPage.style.visibility = "hidden";
-        nextPage.style.visibility = "hidden";
-        // Start flip: rotate from 0 to -180°.
-        requestAnimationFrame(() => {
-          flipper.style.transform = "rotateY(-180deg)";
-        });
-        flipper.addEventListener("transitionend", function () {
-          book.removeChild(flipper);
-          nextPage.style.visibility = "visible";
-          showSpread(currentSpread + 1);
-        });
-      }
-
-      // For backward flip (clicking on a left page), we want the backside to show the PREVIOUS spread’s right page.
-      function createBackwardFlipper() {
-        const currentSpreadElem = spreads[currentSpread];
-        const prevSpreadElem = spreads[currentSpread - 1];
-        const currentPage = currentSpreadElem.querySelector(".page.left");
-        const prevPage = prevSpreadElem.querySelector(".page.right");
-        if (!currentPage || !prevPage) {
-          showSpread(currentSpread - 1);
-          return;
-        }
-        const book = document.getElementById("book");
-        const flipper = document.createElement("div");
-        flipper.className = "flip-page left-flip";
-        const offsetLeft = currentPage.offsetLeft;
-        const offsetTop = currentPage.offsetTop;
-        flipper.style.top = offsetTop + "px";
-        flipper.style.left = offsetLeft + "px";
-        flipper.style.width = currentPage.offsetWidth + "px";
-        flipper.style.height = currentPage.offsetHeight + "px";
-        const frontFace = document.createElement("div");
-        frontFace.className = "face front";
-        frontFace.innerHTML = currentPage.innerHTML;
-        const backFace = document.createElement("div");
-        backFace.className = "face back";
-        backFace.innerHTML = prevPage.innerHTML;
-        flipper.appendChild(frontFace);
-        flipper.appendChild(backFace);
-        book.appendChild(flipper);
-        currentPage.style.visibility = "hidden";
-        prevPage.style.visibility = "hidden";
-        requestAnimationFrame(() => {
-          flipper.style.transform = "rotateY(180deg)";
-        });
-        flipper.addEventListener("transitionend", function () {
-          book.removeChild(flipper);
-          prevPage.style.visibility = "visible";
-          showSpread(currentSpread - 1);
-        });
-      }
-
-      // Global click listener on the book.
-      document.getElementById("book").addEventListener("click", function (e) {
-        const activeSpread = spreads[currentSpread];
-        const rect = activeSpread.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        // For the front cover (spread 0): clicking anywhere goes forward.
-        if (activeSpread.classList.contains("cover") && currentSpread === 0) {
-          createForwardFlipper();
-        }
-        // For the back cover (last spread): clicking goes backward.
-        else if (
-          activeSpread.classList.contains("cover") &&
-          currentSpread === spreads.length - 1
-        ) {
-          createBackwardFlipper();
-        } else {
-          // For inner spreads: right half click goes forward, left half click goes backward.
-          if (clickX > rect.width / 2) {
-            if (currentSpread < spreads.length - 1) createForwardFlipper();
-          } else {
-            if (currentSpread > 0) createBackwardFlipper();
+      function movePage(e, page) {
+        if (page == currentPage) {
+          currentPage += 2;
+          toggleClass(e, "left-side");
+          if (e.nextElementSibling) {
+            toggleClass(e.nextElementSibling, "left-side");
+          }
+        } else if (page == currentPage - 1) {
+          currentPage -= 2;
+          toggleClass(e, "left-side");
+          if (e.previousElementSibling) {
+            toggleClass(e.previousElementSibling, "left-side");
           }
         }
-      });
+      }
     </script>
   </body>
 </html>
