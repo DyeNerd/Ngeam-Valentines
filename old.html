@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Love Story</title>
+    <!-- Load Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora&family=EB+Garamond&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Basic Reset & Minimal Styling (focus on content) */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #fbecb4; /* warm light background */
+        font-family: "EB Garamond", serif;
+        min-width: 900px;
+        min-height: 700px;
+        position: relative;
+        padding: 20px;
+      }
+      .instruction {
+        text-align: center;
+        font-size: 26px;
+        font-family: "Lora", serif;
+        color: rgba(0, 0, 0, 0.7);
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+      }
+      .book {
+        width: 800px;
+        margin: 0 auto;
+      }
+      /* Each page styled as a bordered box for now */
+      .page {
+        border: 2px solid #ddd;
+        padding: 20px;
+        margin-bottom: 10px;
+        background: #fff;
+        cursor: pointer;
+        transition: transform 0.6s ease;
+      }
+      /* (The flipping effect is done by toggling a class; you can enhance this later) */
+      .left-side {
+        transform: rotateY(-180deg);
+      }
+      /* Simple content styling */
+      h1,
+      h2 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      img {
+        max-width: 150px;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .heart {
+        color: #e60073;
+        animation: beat 1s infinite;
+      }
+      @keyframes beat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="instruction">Click a page to flip</div>
+    <div class="book">
+      <!-- Page 1: "Our Journey Begins" with Days Together & Kitten–themed Examples -->
+      <div class="page" onclick="movePage(this, 1)">
+        <h1>Our Journey Begins</h1>
+        <div class="stat">
+          <p><span>Days Together:</span> <span id="daysTogether">0</span></p>
+        </div>
+        <h2>Kitten Time Fun!</h2>
+        <ul>
+          <li>
+            <img
+              src="https://via.placeholder.com/150?text=Kitten+1"
+              alt="Kitten Example 1"
+            />
+            <p>This is enough time for a kitten to grow into a majestic cat!</p>
+          </li>
+          <li>
+            <img
+              src="https://via.placeholder.com/150?text=Kitten+2"
+              alt="Kitten Example 2"
+            />
+            <p>A kitten could learn to pounce in this journey!</p>
+          </li>
+          <li>
+            <img
+              src="https://via.placeholder.com/150?text=Kitten+3"
+              alt="Kitten Example 3"
+            />
+            <p>Plenty of days for a kitten to chase its tail!</p>
+          </li>
+          <li>
+            <img
+              src="https://via.placeholder.com/150?text=Kitten+4"
+              alt="Kitten Example 4"
+            />
+            <p>Enough time for a kitten to nap peacefully in the sun.</p>
+          </li>
+          <li>
+            <img
+              src="https://via.placeholder.com/150?text=Kitten+5"
+              alt="Kitten Example 5"
+            />
+            <p>This is sufficient for a kitten to become a wise, grown cat!</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Page 2: Nicknames -->
+      <div class="page" onclick="movePage(this, 2)">
+        <h1>Our Adorable Nicknames</h1>
+        <p>
+          We have collected <strong id="nicknamesCount">4</strong> special
+          nicknames:
+        </p>
+        <ul>
+          <li>Kitty</li>
+          <li>Sweetheart</li>
+          <li>Pumpkin</li>
+          <li>Sunshine</li>
+        </ul>
+      </div>
+
+      <!-- Page 3: Restaurants Discovered -->
+      <div class="page" onclick="movePage(this, 3)">
+        <h1>Restaurant Discoveries</h1>
+        <p>
+          We've discovered <strong id="restaurantsCount">3</strong> delightful
+          spots:
+        </p>
+        <ul>
+          <li>Joe's Diner</li>
+          <li>The Cozy Corner</li>
+          <li>Bistro Love</li>
+        </ul>
+      </div>
+
+      <!-- Page 4: Thank You Message -->
+      <div class="page" onclick="movePage(this, 4)">
+        <h1>Thank You!</h1>
+        <p>
+          Thank you for being a great, supportive girlfriend. I cherish every
+          moment with you!
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Flip pages by toggling a class; this example simply updates a global page counter.
+      let currentPage = 1;
+      function toggleClass(el, className) {
+        if (el.className.includes(className)) {
+          el.className = el.className.replace(" " + className, "");
+        } else {
+          el.className += " " + className;
+        }
+      }
+      function movePage(el, page) {
+        // If clicking on the current page, flip forward
+        if (page === currentPage) {
+          currentPage++;
+          toggleClass(el, "left-side");
+        }
+        // If clicking on the previous page, flip backward
+        else if (page === currentPage - 1) {
+          currentPage--;
+          toggleClass(el, "left-side");
+        }
+        // (This is a simple example; you can later enhance the flipping logic as needed.)
+      }
+
+      // Days Together calculation and animated update
+      const anniversaryDate = new Date("2023-10-02"); // adjust as needed
+      function calculateDaysTogether() {
+        const now = new Date();
+        const diffTime = now - anniversaryDate;
+        return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      }
+      function animateValue(id, start, end, duration) {
+        const obj = document.getElementById(id);
+        let startTimestamp = null;
+        function step(timestamp) {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          obj.textContent = Math.floor(progress * (end - start) + start);
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        }
+        window.requestAnimationFrame(step);
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const days = calculateDaysTogether();
+        animateValue("daysTogether", 0, days, 2000);
+        // Set example counts for nicknames and restaurants
+        document.getElementById("nicknamesCount").textContent = 4;
+        document.getElementById("restaurantsCount").textContent = 3;
+      });
+    </script>
+  </body>
+</html>
