@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.instruction,
+.book {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  min-width: 900px;
+  min-height: 700px;
+  background: #ffe6f0; /* light blush for Valentine’s */
+  position: relative;
+}
+
+h1 {
+  font-family: "Pacifico", cursive; /* A playful, handwritten font */
+  color: #e91e63; /* A vibrant pink tone */
+  text-align: center; /* Center the text */
+  font-size: 2.5em; /* Adjust size as needed */
+  margin: 20px auto; /* Center with auto margins */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  padding: 10px;
+  background: linear-gradient(
+    135deg,
+    #ff9a9e 0%,
+    #fad0c4 100%
+  ); /* A soft gradient background */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  animation: fadeIn 1.5s ease-out; /* A gentle fade-in effect */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.book {
+  width: 847px;
+  height: 654.5px;
+  transform: translate(-50%, -50%) rotateX(10deg) rotateY(-10deg);
+  transform-style: preserve-3d;
+}
+
+/* Remove the translateZ() values so that all pages lie in the same plane,
+   and use z-index to layer them in order. */
+.page {
+  width: 423.5px;
+  height: 654.5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: transform 1s;
+  background: #fff0f5;
+  border: 1px solid #ffccd5;
+  color: #a3004d;
+  transform: translateZ(0); /* all pages at same depth */
+}
+
+/* Layer pages using z-index so that page 1 is on top, then 2, etc. */
+.page:nth-child(1) {
+  padding: 5% 4% 4% 5%;
+  transform-origin: 0% 50%;
+  background: linear-gradient(135deg, #ffccd5, #ffb3c6);
+  color: #a3004d;
+  z-index: 6;
+}
+.left-side:nth-child(1) {
+  transform: rotateY(-180deg);
+}
+
+.page:nth-child(2) {
+  padding: 5% 5% 4% 4%;
+  transform-origin: 100% 50%;
+  transform: scaleX(-1) translateX(100%);
+  background: linear-gradient(135deg, #ffccd5, #ffb3c6);
+  color: #a3004d;
+  z-index: 5;
+}
+.left-side:nth-child(2) {
+  transform: scaleX(-1) translateX(100%) rotateY(180deg);
+}
+
+.page:nth-child(3) {
+  padding: 5% 4% 4% 5%;
+  transform-origin: 0% 50%;
+  background: #fff0f5;
+  color: #a3004d;
+  z-index: 4;
+}
+.left-side:nth-child(3) {
+  transform: rotateY(-180deg);
+}
+
+.page:nth-child(4) {
+  padding: 5% 5% 4% 4%;
+  transform-origin: 100% 50%;
+  transform: scaleX(-1) translateX(100%);
+  background: #fff0f5;
+  color: #a3004d;
+  z-index: 3;
+}
+.left-side:nth-child(4) {
+  transform: scaleX(-1) translateX(100%) rotateY(180deg);
+}
+
+.page:nth-child(5) {
+  padding: 5% 4% 4% 5%;
+  transform-origin: 0% 50%;
+  background: #fff0f5;
+  color: #a3004d;
+  z-index: 2;
+}
+.left-side:nth-child(5) {
+  transform: rotateY(-180deg);
+}
+
+.page:nth-child(6) {
+  padding: 5% 5% 4% 4%;
+  transform-origin: 100% 50%;
+  transform: scaleX(-1) translateX(100%);
+  background: #fff0f5;
+  color: #a3004d;
+  z-index: 1;
+}
+.left-side:nth-child(6) {
+  transform: scaleX(-1) translateX(100%) rotateY(180deg);
+}
+
+/* Cover-front specific styling */
+.cover-front:nth-child(1) {
+  text-align: center;
+  background: linear-gradient(#ffd6e0, #ffc1cc) 50% 50%/80% 86% no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/90% 93% no-repeat,
+    linear-gradient(#ffccd5, #ffccd5) no-repeat;
+}
+.cover-front:nth-child(1) h1 {
+  font-family: "Lora", serif;
+  font-size: 45px;
+  color: #a3004d;
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+.cover-front:nth-child(1) h2 {
+  font-family: "EB Garamond", serif;
+  font-size: 24px;
+  color: #a3004d;
+  position: relative;
+  top: 40%;
+}
+.cover-front:nth-child(1) .hat {
+  font-size: 100px;
+  color: #a3004d;
+  position: relative;
+  top: 3%;
+}
+
+p {
+  margin-bottom: 4%;
+  font-family: "EB Garamond", serif;
+  font-size: 16px;
+}
+
+.page:nth-child(3) p:first-of-type:first-letter {
+  font-size: 32px;
+}
+
+.instruction {
+  left: calc(50% - 150px);
+  font-size: 26px;
+  font-family: "EB Garamond", serif;
+  color: #a3004d;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 10px 15px;
+}
+
+/* Kitten container for flippable examples */
+#kittenContainer {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+#kittenContainer.flipped {
+  transform: rotateY(180deg);
+}

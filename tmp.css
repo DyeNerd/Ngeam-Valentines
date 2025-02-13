@@ -18,7 +18,7 @@ body {
   height: 100vh;
   min-width: 900px;
   min-height: 700px;
-  background: #fbecb4;
+  background: #ffe6f0;
   position: relative;
 }
 
@@ -32,7 +32,9 @@ body {
 .page {
   width: 423.5px;
   height: 654.5px;
-  background: #eee;
+  background: #fff0f5;
+  border: 1px solid #ffccd5;
+  color: #a3004d;
   position: absolute;
   top: 0;
   right: 0;
@@ -43,7 +45,7 @@ body {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
   transform: translatez(-1px);
-  background: #9bc8d6;
+  background: linear-gradient(135deg, #ffccd5, #ffb3c6);
 }
 
 .left-side:nth-child(1) {
@@ -54,7 +56,8 @@ body {
   padding: 5% 5% 4% 4%;
   transform-origin: 100% 50%;
   transform: translatez(-2px) scalex(-1) translatex(100%);
-  background: #9bc8d6;
+  background: linear-gradient(135deg, #ffccd5, #ffb3c6);
+  color: #a3004d;
 }
 
 .left-side:nth-child(2) {
@@ -65,7 +68,8 @@ body {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
   transform: translatez(-3px);
-  background: #f5f5f5;
+  background: #fff0f5;
+  color: #a3004d;
 }
 
 .left-side:nth-child(3) {
@@ -76,7 +80,8 @@ body {
   padding: 5% 5% 4% 4%;
   transform-origin: 100% 50%;
   transform: translatez(-4px) scalex(-1) translatex(100%);
-  background: #f5f5f5;
+  background: #fff0f5;
+  color: #a3004d;
 }
 
 .left-side:nth-child(4) {
@@ -87,7 +92,8 @@ body {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
   transform: translatez(-5px);
-  background: #f5f5f5;
+  background: #fff0f5;
+  color: #a3004d;
 }
 
 .left-side:nth-child(5) {
@@ -98,7 +104,13 @@ body {
   padding: 5% 5% 4% 4%;
   transform-origin: 100% 50%;
   transform: translatez(-6px) scalex(-1) translatex(100%);
-  background: #f5f5f5;
+  background: #fff0f5;
+  color: #a3004d;
+  /* font-size: 48px; */
+}
+
+.page:nth-child(6) p {
+  font-size: 24px;
 }
 
 .left-side:nth-child(6) {
@@ -109,7 +121,8 @@ body {
   padding: 5% 4% 4% 5%;
   transform-origin: 0% 50%;
   transform: translatez(-7px);
-  background: #f5f5f5;
+  background: #fff0f5;
+  color: #a3004d;
 }
 
 .left-side:nth-child(7) {
@@ -1141,27 +1154,27 @@ body {
 
 .cover-front:nth-child(1) {
   text-align: center;
-  background: linear-gradient(#afd2dd, #a1d5e5) 50% 50%/80% 86% no-repeat,
+  background: linear-gradient(#ffd6e0, #ffc1cc) 50% 50%/80% 86% no-repeat,
     linear-gradient(#ffffff, #ffffff) 50% 50%/90% 93% no-repeat,
-    linear-gradient(#9bc8d6, #9bc8d6) no-repeat;
+    linear-gradient(#ffccd5, #ffccd5) no-repeat;
 }
 .cover-front:nth-child(1) h1 {
   font-family: "Lora", serif;
   font-size: 45px;
-  color: #134a78;
+  color: #a3004d;
   margin-top: 30px;
   text-transform: uppercase;
 }
 .cover-front:nth-child(1) h2 {
   font-family: "EB Garamond", serif;
   font-size: 24px;
-  color: #134a78;
+  color: #a3004d;
   position: relative;
   top: 40%;
 }
 .cover-front:nth-child(1) .hat {
   font-size: 100px;
-  color: #134a78;
+  color: #a3004d;
   position: relative;
   top: 3%;
 }
@@ -1180,8 +1193,8 @@ p {
   left: calc(50% - 150px);
   font-size: 26px;
   font-family: "EB Garamond", serif;
-  color: #0009;
-  background: #fff7;
+  color: #a3004d;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   padding: 10px 15px;
 }
@@ -1193,4 +1206,46 @@ p {
 /* When the container has the "flipped" class, rotate it 180 degrees */
 #kittenContainer.flipped {
   transform: rotateY(180deg);
+}
+
+.page.cover-back {
+  text-align: center;
+  background: linear-gradient(#ffd6e0, #ffc1cc) 50% 50%/80% 86% no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50%/90% 93% no-repeat,
+    linear-gradient(#ffccd5, #ffccd5) no-repeat;
+}
+.page.cover-back h1 {
+  font-family: "Lora", serif;
+  font-size: 45px;
+  color: #a3004d;
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+.page.cover-back h2 {
+  font-family: "EB Garamond", serif;
+  font-size: 24px;
+  color: #a3004d;
+  position: relative;
+  top: 40%;
+}
+.page.cover-back .hat {
+  font-size: 100px;
+  color: #a3004d;
+  position: relative;
+  top: 3%;
+}
+.Title {
+  font-family: "Great Vibes", cursive; /* An elegant, script-style font */
+  font-size: 3em; /* Large size for prominence */
+  text-align: center; /* Center the heading */
+  color: #e91e63; /* A vibrant pink color */
+  margin: 50px 0 30px; /* Top and bottom spacing to separate it from other elements */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  padding: 10px 20px; /* Padding for a bit of breathing room */
+  background: linear-gradient(
+    135deg,
+    #ff9a9e,
+    #fad0c4
+  ); /* Soft gradient background */
+  border-radius: 8px; /* Rounded corners for a gentle look */
 }

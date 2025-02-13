@@ -20,9 +20,11 @@ function movePage(e, page) {
   }
   if (currentPage === 3) {
     animateValue("daysTogether", 0, calculateDaysTogether(), 2000);
+    document.getElementById("kittenImage").src =
+      kittenExamples[currentKittenIndex].image;
   } else if (currentPage === 5) {
-    animateValue("nicknameCount", 0, 99, 2000);
-    animateValue("restaurantsCount", 0, 99, 2000);
+    animateValue("nicknameCount", 0, 99999, 200000);
+    animateValue("restaurantsCount", 0, 99, 20000);
   }
 
   //   console.log(currentPage);
